@@ -27,9 +27,8 @@ clear();
 
     if(countries.length >= 2 && countries.length <= 10){
       const markup = countries.map(country => markupCountryList(country)).join("")
-      
       listEl.innerHTML = markup;
-     
+    
     }  
       if (countries.length === 1){
         const markup = countries.map(country => markupCountryInfo(country)).join("")
@@ -39,7 +38,7 @@ clear();
     
 }, DEBOUNCE_DELAY)
 }
-)),
+));
 
 function markupCountryList({name, flags, capital}){
 
@@ -48,16 +47,15 @@ function markupCountryList({name, flags, capital}){
   <img src="${flags.svg}" alt="${name.official}" width="70" heigth="50">
   <p>Capital: ${capital}</p>
   </li>`
-},
+};
 
 function markupCountryInfo({name, flags, capital, languages, population}){
-  const lang = languages.map(lang => lang.name).join(", ")
 
   return `<li>
   <h2>Country: ${name.official}</h2>
   <img src="${flags.svg}" alt="${name.official}" width="70" heigth="50">
   <p>Capital: ${capital}</p>
-  <p>Languages: ${lang}</p>
+  <p>Languages: ${Object.values(languages)}</p>
   <p>Population: ${population}</p>
   </li>`
 };
@@ -65,19 +63,10 @@ function markupCountryInfo({name, flags, capital, languages, population}){
 function clear(){
   listEl.innerHTML = "";
   infoEl.innerHTML = "";
-}
+};
 
 
 
-
-// function updateList(markup){
-//   listEl.innerHTML = markup;
-// },
-
-
-// function updateInfo(markup){
-//   infoEl.innerHTML = markup;
-// };
 
 
 
