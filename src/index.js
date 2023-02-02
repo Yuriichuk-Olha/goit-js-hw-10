@@ -37,11 +37,12 @@ clear();
 }, DEBOUNCE_DELAY)
 }
 ));
-
+// або const [flag] = flags;
 function markupCountryList({name, flags}){
   return `<li>
   <h2>Country: ${name.official}</h2>
   <img src="${flags[0]}" alt="${name.official}" width="50" height="30">
+  
   </li>`
 
 };
