@@ -16,44 +16,40 @@ clear();
 
   API.fetchCountries(inputValue)
   .then((countries) =>  {
-  
+  console.log(countries);
     if (countries.length === 0) { 
       Notiflix.Notify.failure("Oops, there is no country with that name");
     } 
-
     if(countries.length > 10){
       Notiflix.Notify.info("Too many matches found. Please enter a more specific name.");
     }
-
     if(countries.length >= 2 && countries.length <= 10){
-      const markup = countries.map(country => markupCountryList(country)).join("")
+      const markup = countries.map(country =>
+       
+       markupCountryList(country)).join("")
       listEl.innerHTML = markup;
-    
     }  
-      if (countries.length === 1){
+      else if (countries.length === 1){
         const markup = countries.map(country => markupCountryInfo(country)).join("")
         infoEl.innerHTML = markup;
-      
+        
     }
-    
 }, DEBOUNCE_DELAY)
 }
 ));
 
-function markupCountryList({name, flags, capital}){
-
-  return  `<li>
+function markupCountryList({name, flags}){
+  return `<li>
   <h2>Country: ${name.official}</h2>
-  <img src="${flags.svg}" alt="${name.official}" width="70" heigth="50">
-  <p>Capital: ${capital}</p>
+  <img src="${flags[0]}" alt="${name.official}" width="50" height="30">
   </li>`
+
 };
 
 function markupCountryInfo({name, flags, capital, languages, population}){
-
   return `<li>
   <h2>Country: ${name.official}</h2>
-  <img src="${flags.svg}" alt="${name.official}" width="70" heigth="50">
+  <img src="${flags[0]}" alt="${name.official}" width="50" height="30">
   <p>Capital: ${capital}</p>
   <p>Languages: ${Object.values(languages)}</p>
   <p>Population: ${population}</p>
